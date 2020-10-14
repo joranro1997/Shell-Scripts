@@ -1,0 +1,50 @@
+#!/bin/bash
+
+usage() { echo -e "Formato:\n$0 <acción> <salidas>\nAcciones: [-1: encender | -0: apagar]\nSalidas: [-a: Todas | -n: Salida x | -f: Desde la salida x | -l: Hasta la salida y]" 1>&2; exit 1; }
+
+x=""
+f=""
+l=""
+
+while getopts ":01an:f:l:" o; do
+	case "${o}" in
+		1)
+			x=1
+			;;
+		0)
+			x=0
+			;;
+		a)
+			if [ ${x} -eq 1 ]; then { printf "practica\ncos\n1\n9\n1\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es; else { printf "practica\ncos\n1\n9\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es;
+			fi
+			;;
+		n)
+			n=${OPTARG}
+			if [ ${x} -eq 1 ]; then { printf "practica\ncos\n1\n${n}\n1\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es; else { printf "practica\ncos\n1\n${n}\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es;
+			fi
+			;;
+		f)
+			f=${OPTARG}
+			if [ ${x} -eq 1 ]; then while [ ${f} -le 8 ]; do { printf "practica\ncos\n1\n${f}\n1\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es; f=$(( ${f} + 1)); done else while [ ${f} -le 8 ]; do { printf "practica\ncos\n1\n${f}\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es; f=$(( ${f} + 1)); done
+			fi
+			;;
+		l)
+			l=${OPTARG}
+			if [ ${x} -eq 1 ]; then while [ ${l} -ge 1 ]; do { printf "practica\ncos\n1\n${l}\n1\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es; l=$(( ${l} - 1)); done else while [ ${l} -ge 1 ]; do { printf "practica\ncos\n1\n${l}\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es; l=$(( ${l} - 1)); done
+			fi
+			;;
+		:)
+			echo "Invalid option: $OPTARG requires an argument" 1>&2
+			;;
+		\?)
+			usage
+			;;
+	esac
+done
+shift $((OPTIND-1))
+	
+echo "End of the script. Use $0 -h to ask for help";
+
+exit 1
+;;			
+			

@@ -1,0 +1,23 @@
+{ printf "practica\ncos\n1\n1\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es
+echo "Switched off outlet 1. Sleeping for $1 seconds"
+sleep $1
+{ printf "practica\ncos\n1\n2\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es
+echo "Switched off outlet 2. Sleeping for $1 seconds"
+sleep $1
+{ printf "practica\ncos\n1\n3\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es
+echo "Switched off outlet 3. Sleeping for $1 seconds"
+sleep $1
+{ printf "practica\ncos\n1\n4\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es
+echo "Switched off outlet 4. Sleeping for $1 seconds"
+sleep $1
+{ printf "practica\ncos\n1\n5\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es
+echo "Switched off outlet 5. Sleeping for $1 seconds"
+sleep $1
+{ printf "practica\ncos\n1\n6\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es
+echo "Switched off outlet 6. Sleeping for $1 seconds"
+sleep $1
+{ printf "practica\ncos\n1\n7\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es
+echo "Switched off outlet 7. Sleeping for $1 seconds"
+sleep $1
+{ printf "practica\ncos\n1\n8\n2\nyes\n\n\033\0334\n"; } | telnet pdu-acomp.disca.upv.es
+echo "Switched off outlet 8. All outlets off"
